@@ -222,6 +222,28 @@ a {
   box-shadow: var(--shadow);
 }
 
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.sub-list {
+  list-style: disc;
+  margin: 8px 0 0 20px;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.time-card ul,
+.card ul,
+.list ul {
+  margin-top: 10px;
+}
+
 .hero__card::after {
   content: '';
   position: absolute;
