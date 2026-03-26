@@ -1,43 +1,140 @@
-const navLinks = document.querySelectorAll('.nav-links a');
-const sections = [...document.querySelectorAll('section[id]')];
-const toTop = document.querySelector('.to-top');
+const body = document.body;
+const topbar = document.querySelector(".topbar");
+const menuToggle = document.querySelector(".menu-toggle");
+const navLinks = [...document.querySelectorAll(".nav-links a")];
+const sections = [...document.querySelectorAll("section[id]")];
+const revealTargets = [...document.querySelectorAll("[data-reveal]")];
+const toTop = document.querySelector(".to-top");
 
-// Smoothly highlight nav items as the user scrolls.
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      const id = entry.target.getAttribute('id');
-      const link = document.querySelector(`.nav-links a[href="#${id}"]`);
-      if (!link) return;
-      if (entry.isIntersecting) {
-        navLinks.forEach((l) => l.classList.remove('active'));
-        link.classList.add('active');
-      }
-    });
-  },
-  { threshold: 0.32 }
-);
+const closeMenu = () => {
+  body.classList.remove("nav-open");
+  menuToggle?.setAttribute("aria-expanded", "false");
+};
 
-sections.forEach((section) => observer.observe(section));
+const openMenu = () => {
+  body.classList.add("nav-open");
+  menuToggle?.setAttribute("aria-expanded", "true");
+};
 
-// Enable smooth scrolling for anchor links.
-navLinks.forEach((link) => {
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    const target = document.querySelector(link.getAttribute('href'));
-    target?.scrollIntoView({ behavior: 'smooth' });
+const setActiveLink = (id) => {
+  navLinks.forEach((link) => {
+    const isActive = link.getAttribute("href") === `#${id}`;
+    link.classList.toggle("active", isActive);
   });
-});
+};
 
-// Back-to-top button visibility and action.
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 320) {
-    toTop?.classList.add('visible');
+menuToggle?.addEventListener("click", () => {
+  const expanded = menuToggle.getAttribute("aria-expanded") === "true";
+  if (expanded) {
+    closeMenu();
   } else {
-    toTop?.classList.remove('visible');
+    openMenu();
   }
 });
 
-toTop?.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+navLinks.forEach((link) => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    const href = link.getAttribute("href");
+    const target = href ? document.querySelector(href) : null;
+    closeMenu();
+
+    if (!target) {
+      return;
+    }
+
+    target.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  });
 });
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeMenu();
+  }
+});
+
+document.addEventListener("click", (event) => {
+  if (!body.classList.contains("nav-open")) {
+    return;
+  }
+
+  if (topbar?.contains(event.target)) {
+    return;
+  }
+
+  closeMenu();
+});
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 900) {
+    closeMenu();
+  }
+});
+
+const sectionObserver = new IntersectionObserver(
+  (entries) => {
+    const visibleEntries = entries
+      .filter((entry) => entry.isIntersecting)
+      .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+    if (!visibleEntries.length) {
+      return;
+    }
+
+    const currentId = visibleEntries[0].target.getAttribute("id");
+    if (currentId) {
+      setActiveLink(currentId);
+    }
+  },
+  {
+    rootMargin: "-28% 0px -45% 0px",
+    threshold: [0.2, 0.35, 0.55, 0.75],
+  },
+);
+
+sections.forEach((section) => sectionObserver.observe(section));
+
+const revealObserver = new IntersectionObserver(
+  (entries, observer) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) {
+        return;
+      }
+
+      entry.target.classList.add("is-visible");
+      observer.unobserve(entry.target);
+    });
+  },
+  {
+    rootMargin: "0px 0px -10% 0px",
+    threshold: 0.12,
+  },
+);
+
+revealTargets.forEach((target, index) => {
+  target.style.transitionDelay = `${Math.min(index * 40, 180)}ms`;
+  revealObserver.observe(target);
+});
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 420) {
+    toTop?.classList.add("visible");
+  } else {
+    toTop?.classList.remove("visible");
+  }
+});
+
+toTop?.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+});
+
+if (sections[0]) {
+  setActiveLink(sections[0].id);
+}
