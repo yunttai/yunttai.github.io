@@ -99,7 +99,21 @@
     - URL 1차 분석과 패킷 기반 심층 분석 결과를 결합
     - Packet 분석 AI f1-score 90% 이상 확보
 
-#### 3. **MSG_CTF_BACK**
+#### 3. **ELDEN_RING**
+
+- 기간: 진행 중
+- GitHub: https://github.com/MJSEC-MJU/ELDEN_RING
+- Tech Stack: Kubernetes, Istio, Falco, Prometheus, Grafana, Loki, GitHub Actions, Harness, Redis, GitOps
+- 한 줄 설명: Kubernetes 기반 AI 대 AI 능동 방어 및 시큐어코딩 자동화 시스템.
+- 담당 역할
+    - Secure Coding Plane 담당
+    - Recovery Assurance Plane 담당
+    - Runtime Defense Plane에서 전달받은 CWE/취약 코드 위치 기반 정적 분석 및 LLM 패치 생성 구조 설계
+    - 후보 이미지를 staging namespace에서 기동 검증, 회귀 테스트, 공격 재현 테스트, SLO 검증까지 수행하는 흐름 설계
+- 성과
+    - 공격 탐지 이후 자동 패치, 검증, 운영 승격으로 이어지는 보안제품 구조 연구
+
+#### 4. **MSG_CTF_BACK**
 
 - 기간: 2025.07.~2025.11.
 - GitHub: https://github.com/MJSEC-MJU/MSG_CTF_BACK
@@ -113,20 +127,6 @@
 - 성과
     - CTF 운영에 필요한 특수 문제 인증 구조 구현
     - 동시 제출 상황에서 코드 중복 소비를 방지하는 백엔드 구조 경험
-
-#### 4. **ELDEN_RING**
-
-- 기간: 진행 중
-- GitHub: https://github.com/MJSEC-MJU/ELDEN_RING
-- Tech Stack: Kubernetes, Istio, Falco, Prometheus, Grafana, Loki, GitHub Actions, Harness, Redis, GitOps
-- 한 줄 설명: Kubernetes 기반 AI 대 AI 능동 방어 및 시큐어코딩 자동화 시스템.
-- 담당 역할
-    - Secure Coding Plane 담당
-    - Recovery Assurance Plane 담당
-    - Runtime Defense Plane에서 전달받은 CWE/취약 코드 위치 기반 정적 분석 및 LLM 패치 생성 구조 설계
-    - 후보 이미지를 staging namespace에서 기동 검증, 회귀 테스트, 공격 재현 테스트, SLO 검증까지 수행하는 흐름 설계
-- 성과
-    - 공격 탐지 이후 자동 패치, 검증, 운영 승격으로 이어지는 보안제품 구조 연구
 
 #### 5. **CTF-bot**
 

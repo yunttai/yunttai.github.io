@@ -123,8 +123,8 @@
             </a>
             <a href="#projects">
               <span>03</span>
-              <strong>MSG_CTF_BACK</strong>
-              <p>Spring Boot 기반 자체 CTF 플랫폼 백엔드</p>
+              <strong>ELDEN_RING</strong>
+              <p>Kubernetes 기반 자동 방어/시큐어코딩 파이프라인</p>
             </a>
           </div>
 
@@ -379,77 +379,8 @@
           </article>
 
           <article class="project-card panel" data-reveal>
-            <div class="project-card__visual visual visual--ctf">
-              <p class="project-card__index">03</p>
-              <div class="visual__code">
-                <span>validate_signature_code()</span>
-                <span>acquire_redisson_lock()</span>
-                <span>restrict_admin_api()</span>
-                <span>detect_threat_payload()</span>
-              </div>
-            </div>
-            <div class="project-card__body">
-              <div class="project-card__head">
-                <div>
-                  <p class="project-card__meta">
-                    2025.07 ~ 2025.11 · CTF Platform Backend
-                  </p>
-                  <h3>MSG_CTF_BACK</h3>
-                </div>
-                <a
-                  class="project-link"
-                  href="https://github.com/MJSEC-MJU/MSG_CTF_BACK"
-                  target="_blank"
-                  rel="noopener"
-                  >GitHub</a
-                >
-              </div>
-              <p class="project-card__summary">
-                CTFd를 사용하지 않고 직접 개발한 Spring Boot 기반 CTF 운영
-                플랫폼 백엔드입니다. Signature 문제 인증 API와 관리자 권한
-                제한, Redis 분산락 기반 1회성 코드 소비 구조를 구현했습니다.
-              </p>
-              <div class="project-card__grid">
-                <div class="project-block">
-                  <h4>Role</h4>
-                  <ul>
-                    <li>Signature API Controller/Service/Repository 구현</li>
-                    <li>코드 등록, 검증, 중복 처리, 응답 DTO 구성</li>
-                    <li>signature API 관리자 권한 정책 적용</li>
-                  </ul>
-                </div>
-                <div class="project-block">
-                  <h4>Built</h4>
-                  <ul>
-                    <li>SHA-256 digest와 PasswordEncoder 기반 검증</li>
-                    <li>Redisson RLock으로 동시 제출 race condition 방지</li>
-                    <li>팀별 unlock 기록, consumed flag, consumedAt 관리</li>
-                  </ul>
-                </div>
-                <div class="project-block">
-                  <h4>Impact</h4>
-                  <ul>
-                    <li>자체 CTF 플랫폼에서 특수 문제 운영 가능</li>
-                    <li>동시 제출 상황에서도 1회성 코드 소비 안정화</li>
-                    <li>JWT, IP Ban, 공격 탐지 필터 등 보안 백엔드 경험</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="tag-row">
-                <span class="tag">Java 17</span>
-                <span class="tag">Spring Boot</span>
-                <span class="tag">MySQL</span>
-                <span class="tag">Redis</span>
-                <span class="tag">Redisson</span>
-                <span class="tag">JWT</span>
-                <span class="tag">Docker</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card panel" data-reveal>
             <div class="project-card__visual visual visual--k8s">
-              <p class="project-card__index">04</p>
+              <p class="project-card__index">03</p>
               <div class="visual__code">
                 <span>receive_context_package()</span>
                 <span>generate_llm_patch()</span>
@@ -513,6 +444,75 @@
                 <span class="tag">GitHub Actions</span>
                 <span class="tag">Redis</span>
                 <span class="tag">LLM</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card panel" data-reveal>
+            <div class="project-card__visual visual visual--ctf">
+              <p class="project-card__index">04</p>
+              <div class="visual__code">
+                <span>validate_signature_code()</span>
+                <span>acquire_redisson_lock()</span>
+                <span>restrict_admin_api()</span>
+                <span>detect_threat_payload()</span>
+              </div>
+            </div>
+            <div class="project-card__body">
+              <div class="project-card__head">
+                <div>
+                  <p class="project-card__meta">
+                    2025.07 ~ 2025.11 · CTF Platform Backend
+                  </p>
+                  <h3>MSG_CTF_BACK</h3>
+                </div>
+                <a
+                  class="project-link"
+                  href="https://github.com/MJSEC-MJU/MSG_CTF_BACK"
+                  target="_blank"
+                  rel="noopener"
+                  >GitHub</a
+                >
+              </div>
+              <p class="project-card__summary">
+                CTFd를 사용하지 않고 직접 개발한 Spring Boot 기반 CTF 운영
+                플랫폼 백엔드입니다. Signature 문제 인증 API와 관리자 권한
+                제한, Redis 분산락 기반 1회성 코드 소비 구조를 구현했습니다.
+              </p>
+              <div class="project-card__grid">
+                <div class="project-block">
+                  <h4>Role</h4>
+                  <ul>
+                    <li>Signature API Controller/Service/Repository 구현</li>
+                    <li>코드 등록, 검증, 중복 처리, 응답 DTO 구성</li>
+                    <li>signature API 관리자 권한 정책 적용</li>
+                  </ul>
+                </div>
+                <div class="project-block">
+                  <h4>Built</h4>
+                  <ul>
+                    <li>SHA-256 digest와 PasswordEncoder 기반 검증</li>
+                    <li>Redisson RLock으로 동시 제출 race condition 방지</li>
+                    <li>팀별 unlock 기록, consumed flag, consumedAt 관리</li>
+                  </ul>
+                </div>
+                <div class="project-block">
+                  <h4>Impact</h4>
+                  <ul>
+                    <li>자체 CTF 플랫폼에서 특수 문제 운영 가능</li>
+                    <li>동시 제출 상황에서도 1회성 코드 소비 안정화</li>
+                    <li>JWT, IP Ban, 공격 탐지 필터 등 보안 백엔드 경험</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="tag-row">
+                <span class="tag">Java 17</span>
+                <span class="tag">Spring Boot</span>
+                <span class="tag">MySQL</span>
+                <span class="tag">Redis</span>
+                <span class="tag">Redisson</span>
+                <span class="tag">JWT</span>
+                <span class="tag">Docker</span>
               </div>
             </div>
           </article>
