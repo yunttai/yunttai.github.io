@@ -68,92 +68,118 @@
 
 ## 🧾 Project
 
-### **악성코드 탐지 자동화 플랫폼 구축 (YARRAI, WHS 3기 프로젝트)**
+### 대표 프로젝트
 
-![image.png](attachment:b3426622-196d-4144-830d-7361933517fb:c24b51e1-45e7-4063-bc99-a0d77aff3d35.png)
-
-![image.png](attachment:c7180c44-c915-43fd-8ce5-4a38c69357ff:5651acf4-6f03-4e69-a0d7-74cdf11cf8cd.png)
-
-![image.png](attachment:f320f7be-4cd9-41dc-9e30-764abc0b53dc:image.png)
+#### 1. **YARAAI_Web**
 
 - 기간: 2025.04.~2025.08.
-- 담당 역할: 악성코드 분석, 웹 백엔드 파트 총괄, YARA-rule 생성 AI, MITRE ATT&CK Mapping
-- Tech Stack: FastAPI, Python, YARA-rule, MITRE ATT&CK, AI
-- https://github.com/YARAAI-Web/YARAAI_Web
-- 과정
-    - 매주 오프라인 1회, 온라인 1회 총 2회 회의 진행.
-        
-        → 온라인: Discord / 오프라인: BoB센터 or HSPACE 진행
-        
-    - 사전 지식 조사 및 파트 분배
-        - 디버깅/리버싱 능력 향상
-        - 정적 분석 및 YARA-rule 추출 AI에 사용될 학습 데이터 추출
-        - 정적/동적 분석과 현업에서 사용할 만한 툴 정리 후 파트 분배
-    - 설계 및 플랫폼 개발
-        - Python, FastAPI를 이용하여 백엔드 개발 파트 총괄
-        - IDAPython을 이용해 코드 추출 및 정적분석 기능 개발
-        - MITRE ATT&CK을 자동으로 매핑 기능 개발
+- GitHub: https://github.com/YARAAI-Web/YARAAI_Web
+- Tech Stack: FastAPI, Python, React, TypeScript, IDA MCP, CAPA, YARA, Suricata, VirusTotal, MITRE ATT&CK, CWE
+- 한 줄 설명: PE 악성코드 파일을 업로드하면 정적/동적 분석, IDA MCP, CAPA, MITRE ATT&CK, CWE, VirusTotal 정보를 통합하고 YARA 룰과 Suricata 룰을 자동 생성하는 웹 기반 악성코드 분석 플랫폼.
+- 담당 역할
+    - FastAPI 기반 악성코드 분석 파이프라인 구성
+    - PE 업로드 이후 패커 탐지, 언패킹, 정적/동적 분석, VirusTotal 조회, YARA 룰 생성, Suricata 룰 변환, 리포트 저장, Call Graph 생성 흐름 구현
+    - IDA MCP, CAPA, CWE, 악성 판별 결과를 하나의 분석 JSON으로 통합
 - 성과
-    - Python 스크립트, MCP를 이용해 디컴파일 코드 추출 및 정적분석 자동화
-    - cuckoo sandbox사용으로 악성코드 동적분석 자동화
-    - AI 기반 악성코드 행위 학습 및 고도화된 탐지
-    - YARA-rule 생성 자동화 및 악성코드 분석에 필요한 것들(MITRE ATT&CK, CWE  등) 연동
-    - open-ai API를 통한 종합 리포트 제공
+    - 악성코드 분석 결과를 실제 탐지 룰로 연결
+    - MITRE ATT&CK, CWE, VirusTotal, OpenAI API 기반 요약을 포함한 리포트 흐름 구성
 
-⇒ 속도가 느리면, 
-
-⇒ AI엔지니어의 관점말고, 악성코드에 대해 속도를 빠르게 할 수 있는 방법 → 참조가 되는 부분만 mcp로 추출해서 속도를 빠르게 하였다. 이런 방식
-
-보안 엔지니어가 가져야될 마인드를 이용해서 해야됨. 
-
-크립토재커의 어떤 특징을 분류해서, 
-
-### **악성 URL 탐지 플랫폼 구축**
-
-![image.png](attachment:5604f3c5-c032-4e3b-ac68-f61155aadae4:image.png)
-
-![image.png](attachment:01131d43-e9e4-4473-a685-63393069363b:image.png)
-
-![image.png](attachment:7625eaa1-8dfc-4e0d-92eb-86c9e4a130f0:image.png)
+#### 2. **Reagan**
 
 - 기간: 2025.03.~
-- 담당 역할: Packet 분석 AI, Django를 이용한 백엔드 파트 개발, slide-CAPTCHA 자동화 봇 개발
-- Tech Stack: Django REST-Framework, Python, AI, Geetest CAPTCHA, Selenium
-- https://github.com/MJSEC-MJU/Reagan
-- 과정
-    - 매주 오프라인 2회 회의 진행 (2025.03.~2025.06., 명지대학교)
-    - AI 파이프라인 구축
-        - **URL Detection AI**: 텍스트·메타데이터 기반 1차 필터링
-        - **Packet Analysis AI**: 네트워크 패킷 레벨 심층 분석 (맡은 파트)
-            - 악성사이트 1000개, 정상사이트 1000개 학습 모델로 선정
-            
-            → RandomForest 모델로 학습 진행 및 결과추출
-            
-        - **Break_Captcha_AI**: 사이트 분석 시, 우회 진입을 위한, CAPTCHA 챌린지 자동화 봇 개발
-            - re-CAPTCHA V2 - GitHub: https://github.com/MJSEC-MJU/breakrecapcha_v2
-            - slide-CAPTCHA - GitHub: https://github.com/MJSEC-MJU/slide-CAPTCHA-solver (맡은 파트)
-    - 웹 플랫폼 개발
-        - 백엔드 개발
-            - AI 파이프라인 연결
-            - Python, Django를 이용하여 백엔드 파트 개발
+- GitHub: https://github.com/MJSEC-MJU/Reagan
+- Tech Stack: Django, Django REST Framework, React, Selenium, Docker, GCP VM, Nginx, AI
+- 한 줄 설명: URL Detection AI, Packet Analysis AI, Break Captcha AI로 구성된 3단계 악성 URL 탐지 시스템.
+- 담당 역할
+    - Packet Analysis AI 파트 담당
+    - `run_site → CAPTCHA 판단 → run_packet/run_captcha → 최종 판정` 분석 요청 파이프라인 구성
+    - packet 분석 결과를 브라우저 차단 판단에 반영
+    - whitelist 모델과 skip 처리 로직을 통한 오탐 관리
 - 성과
-    - Packet 분석 AI의 f1-score 90% 이상 추출
-    - slide-CAPTCHA 자동화 봇 구축
+    - URL 1차 분석과 패킷 기반 심층 분석 결과를 결합
+    - Packet 분석 AI f1-score 90% 이상 확보
 
-### **제 2회 MSG CTF 사이트 개발**
+#### 3. **MSG_CTF_BACK**
 
 - 기간: 2025.07.~2025.11.
-- 담당 역할: 기획, 운영, Back-end Signature API 개발, 문제 개발
-- Tech Stack: SpringBoot, Python, Flask, Selenium
-- Back-end: https://github.com/MJSEC-MJU/MSG_CTF_BACK
-- 문제 개발: https://github.com/MJSEC-MJU/MSG_CTF_WARGAME
-- 과정
-    - 매주 기획, 문제개발 회의 진행
-        - 백엔드 Signature API 구축
-        - “CAPTCHA THE FLAG” 문제의 geetest CAPTCHA 부분 문제 개발 및 자동화 봇 개발
+- GitHub: https://github.com/MJSEC-MJU/MSG_CTF_BACK
+- Tech Stack: Java 17, Spring Boot, MySQL, Redis, Redisson, JWT, Docker, Nginx
+- 한 줄 설명: CTFd를 사용하지 않고 직접 개발한 Spring Boot 기반 CTF 운영 플랫폼 백엔드.
+- 담당 역할
+    - Signature 문제 인증 API 설계 및 구현
+    - 코드 등록, 검증, 중복 처리, Controller/Service/Repository/DTO 계층 구성
+    - Signature API 관리자 권한 제한
+    - Redis Redisson 분산락 기반 1회성 코드 소비 및 팀별 unlock 상태 관리
 - 성과
-    - 5개 대학(명지대, 건국대(글로컬), 상명대,  순천향대, 중앙대) 해킹동아리 연합 CTF 개최
-    - 축제+CTF 로 초보자도 재밌게 참여할 수 있는 오프라인 CTF 운영
+    - CTF 운영에 필요한 특수 문제 인증 구조 구현
+    - 동시 제출 상황에서 코드 중복 소비를 방지하는 백엔드 구조 경험
+
+#### 4. **ELDEN_RING**
+
+- 기간: 진행 중
+- GitHub: https://github.com/MJSEC-MJU/ELDEN_RING
+- Tech Stack: Kubernetes, Istio, Falco, Prometheus, Grafana, Loki, GitHub Actions, Harness, Redis, GitOps
+- 한 줄 설명: Kubernetes 기반 AI 대 AI 능동 방어 및 시큐어코딩 자동화 시스템.
+- 담당 역할
+    - Secure Coding Plane 담당
+    - Recovery Assurance Plane 담당
+    - Runtime Defense Plane에서 전달받은 CWE/취약 코드 위치 기반 정적 분석 및 LLM 패치 생성 구조 설계
+    - 후보 이미지를 staging namespace에서 기동 검증, 회귀 테스트, 공격 재현 테스트, SLO 검증까지 수행하는 흐름 설계
+- 성과
+    - 공격 탐지 이후 자동 패치, 검증, 운영 승격으로 이어지는 보안제품 구조 연구
+
+#### 5. **CTF-bot**
+
+- 기간: 2026.03.
+- GitHub: https://github.com/yunttai/CTF-bot
+- Tech Stack: Python 3.11, discord.py, aiohttp, BeautifulSoup, SQLite, GitHub Actions, Discord Webhook
+- 한 줄 설명: CTFtime과 K-CTF 정보를 수집·정규화하고 Discord로 조회/알림하는 보안 행사 정보 자동화 봇.
+- 담당 역할
+    - 전체 봇 구조 설계
+    - CTFtime API와 K-CTF 데이터 수집 및 정규화
+    - SQLite snapshot 저장, fallback 구조, Discord Slash Command, Webhook 알림 구현
+    - GitHub Actions 기반 주기 실행과 schedule health monitor 구성
+- 성과
+    - 신규 CTF 알림과 DB 갱신 자동화
+    - scheduled workflow 실패 감지 및 GitHub Issue 생성
+
+### 보조 프로젝트
+
+#### **swf_uncompress_tool**
+
+- GitHub: https://github.com/yunttai/swf_uncompress_tool
+- Tech Stack: Python, struct, zlib, lzma, SWF
+- CWS/ZWS 압축 SWF를 FWS 형태로 변환하는 Flash 리버싱 보조도구.
+
+#### **flask_photo_rating**
+
+- GitHub: https://github.com/yunttai/flask_photo_rating
+- Tech Stack: Flask, SQLAlchemy, SQLite, PIL, OpenCV, NumPy, OWASP ZAP
+- 사진 업로드 후 휴리스틱 기반 점수를 계산하는 Flask 웹서비스와 ZAP DAST 자동화 workflow 실험.
+
+#### **Study_group_platform**
+
+- GitHub: https://github.com/yunttai/Study_group_platform
+- Tech Stack: Django REST Framework, React, SimpleJWT, MySQL/PostgreSQL
+- 사용자 인증, 그룹 생성/참여, 게시판, 댓글, 채팅 기능을 제공하는 스터디/프로젝트 매칭 플랫폼.
+
+#### **BusCrowdRisk-KOR**
+
+- GitHub: https://github.com/yunttai/BusCrowdRisk-KOR
+- Tech Stack: FastAPI, LightGBM, SQLite, GBIS API, Python CLI
+- 경기버스 실시간 도착/위치 데이터와 날씨·시간 feature를 결합해 다음 버스 만차 위험도를 예측하는 공공데이터 MVP.
+
+#### **MSG_CTF_WEB**
+
+- GitHub: https://github.com/MJSEC-MJU/MSG_CTF_WEB
+- Tech Stack: React, Docker, Nginx, CTF Platform
+- MSG CTF 운영 플랫폼의 프론트엔드 구성요소.
+
+#### **MSG_DISCORDBOT**
+
+- GitHub: https://github.com/MJSEC-MJU/MSG_DISCORDBOT
+- Tech Stack: Discord Bot, Python, Automation
+- MSG CTF 운영 시스템의 Discord Bot 기반 운영 자동화 구성요소.
 
 ---
 
